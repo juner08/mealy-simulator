@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "node verify.mjs",
     "test:ui": "node verify-ui.mjs",
-    "test:layout": "node verify-layout.mjs"
+    "test:layout": "node verify-layout.mjs",
+    "test:pwa": "node verify-pwa.mjs"
   },
   "dependencies": {
     "vue": "^3.5.42"

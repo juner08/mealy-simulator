@@ -1,0 +1,40 @@
+{
+  "id": "./",
+  "name": "Mealy Machine Studio — FSM builder & simulator",
+  "short_name": "Mealy Studio",
+  "description": "Build, validate and step through Mealy finite-state machines. Interactive diagram, execution trace and formal definition checks. Works offline.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
+  "orientation": "any",
+  "theme_color": "#5b5bd6",
+  "background_color": "#080b14",
+  "categories": ["education", "productivity", "utilities", "developer"],
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

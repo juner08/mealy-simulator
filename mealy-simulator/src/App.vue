@@ -1,6 +1,7 @@
 ﻿<script setup>
-import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import AlertStack from './components/AlertStack.vue'
+import InstallButton from './components/InstallButton.vue'
 import MachinePanel from './components/MachinePanel.vue'
 import PresetMenu from './components/PresetMenu.vue'
 import SimulatorPanel from './components/SimulatorPanel.vue'
@@ -8,7 +9,9 @@ import StateDiagram from './components/StateDiagram.vue'
 import StatesPanel from './components/StatesPanel.vue'
 import TraceTable from './components/TraceTable.vue'
 import TransitionsPanel from './components/TransitionsPanel.vue'
+import UpdateBanner from './components/UpdateBanner.vue'
 import { useMealyMachine } from './composables/useMealyMachine.js'
+import { usePwa } from './pwa.js'
 import { BLANK_MACHINE, PRESETS } from './presets.js'
 
 const THEME_KEY = 'mealy-simulator:theme'
@@ -97,6 +100,14 @@ function seek(position) {
   m.cursor = position
 }
 
+/* ---------------- installable app ---------------- */
+
+const pwa = usePwa()
+
+watch(pwa.offlineReady, () => {
+  m.notify('success', 'Saved for offline use — this app now opens without a connection.')
+})
+
 onMounted(() => {
   document.addEventListener('keydown', onKeydown)
   if (!m.hydrate()) loadPreset(PRESETS[0])
@@ -155,6 +166,7 @@ onBeforeUnmount(() => {
           @load-preset="loadPreset"
           @new-machine="newMachine"
         />
+        <InstallButton @dismissed="(message) => m.notify('info', message)" />
       </div>
     </header>
 
@@ -242,5 +254,7 @@ onBeforeUnmount(() => {
         <kbd>←</kbd> <kbd>→</kbd> step · changes save to this browser automatically
       </footer>
     </main>
+
+    <UpdateBanner />
   </div>
 </template>
