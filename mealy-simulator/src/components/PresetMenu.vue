@@ -203,4 +203,18 @@ onBeforeUnmount(() => {
   opacity: 0;
   transform: translateY(-0.375rem) scale(0.97);
 }
+
+@media (max-width: 640px) {
+  /* Anchor the menu to the viewport, not the small button, so it never
+     spills off the left edge or gets clipped by the header. */
+  .preset-menu {
+    position: fixed;
+    top: var(--header-h);
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+    max-height: calc(100dvh - var(--header-h) - 1.5rem);
+    overflow-y: auto;
+  }
+}
 </style>

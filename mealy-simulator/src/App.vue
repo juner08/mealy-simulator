@@ -31,6 +31,16 @@ function initialTheme() {
 const theme = ref(initialTheme())
 const activePreset = ref('')
 
+// Keep the document element in sync so <body>, scrollbars and native
+// controls all follow the theme, not just the .app subtree.
+watch(
+  theme,
+  (value) => {
+    document.documentElement.dataset.theme = value
+  },
+  { immediate: true },
+)
+
 function toggleTheme() {
   theme.value = theme.value === 'dark' ? 'light' : 'dark'
   try {

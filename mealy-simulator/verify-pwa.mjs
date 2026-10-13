@@ -379,7 +379,7 @@ const offline = await evaluate(`
   const nodes = document.querySelectorAll('.node').length
   const theme = document.querySelector('.app')?.dataset.theme
   const css = getComputedStyle(document.querySelector('.card')).borderRadius
-  const chip = /offline/i.test(document.body.innerText)
+  const chip = document.querySelectorAll('.offline-chip').length
   return { cards, controller, restored: stored?.includes('OFFLINE_Q'), rows, output, nodes, theme, css, chip, stylesheets: document.styleSheets.length, online: navigator.onLine }
 `)
 check('app cold-starts with no network', offline.cards === 6, `${offline.cards} cards`)
@@ -388,7 +388,7 @@ check('existing local data intact offline', offline.restored)
 check('stylesheets applied offline', offline.css !== '0px' && offline.stylesheets > 0, `${offline.stylesheets} sheets, radius ${offline.css}`)
 check('simulation runs offline', offline.rows === 3 && offline.output === '001', `${offline.rows} rows, out ${offline.output}`)
 check('diagram still renders offline', offline.nodes > 0, `${offline.nodes} nodes`)
-check('offline chip shown while disconnected', offline.chip)
+check('no offline indicator while disconnected', offline.chip === 0, `${offline.chip} chip(s)`)
 check('navigator reports offline', offline.online === false)
 
 await setOffline(false)

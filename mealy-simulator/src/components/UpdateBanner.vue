@@ -1,7 +1,7 @@
 <script setup>
 import { usePwa } from '../pwa.js'
 
-const { updateReady, applyUpdate, dismissUpdate, online } = usePwa()
+const { updateReady, applyUpdate, dismissUpdate } = usePwa()
 </script>
 
 <template>
@@ -14,12 +14,6 @@ const { updateReady, applyUpdate, dismissUpdate, online } = usePwa()
       <span class="update-text">A new version of Mealy Studio is ready.</span>
       <button class="btn btn-primary btn-sm" @click="applyUpdate">Reload</button>
       <button class="btn btn-ghost btn-sm" @click="dismissUpdate">Later</button>
-    </div>
-  </Transition>
-
-  <Transition name="fade">
-    <div v-if="!online" class="offline-chip" role="status" aria-live="polite">
-      Offline — your work is saved on this device
     </div>
   </Transition>
 </template>
@@ -50,24 +44,6 @@ const { updateReady, applyUpdate, dismissUpdate, online } = usePwa()
   color: var(--text-primary);
 }
 
-.offline-chip {
-  position: fixed;
-  left: 50%;
-  top: max(1rem, env(safe-area-inset-top));
-  z-index: 60;
-  transform: translateX(-50%);
-  padding: 0.4375rem 0.875rem;
-  background: var(--warning-soft);
-  border: 1px solid var(--warning);
-  border-radius: var(--radius-full);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--warning);
-  box-shadow: var(--shadow-md);
-  max-width: calc(100vw - 2rem);
-  text-align: center;
-}
-
 .rise-enter-active,
 .rise-leave-active {
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -77,16 +53,6 @@ const { updateReady, applyUpdate, dismissUpdate, online } = usePwa()
 .rise-leave-to {
   opacity: 0;
   transform: translate(-50%, 0.75rem);
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 
 @media (max-width: 640px) {

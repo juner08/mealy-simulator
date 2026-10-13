@@ -145,4 +145,15 @@ onBeforeUnmount(() => {
   opacity: 0;
   transform: translateY(-0.375rem) scale(0.97);
 }
+
+@media (max-width: 640px) {
+  /* Full-width sheet under the header so the steps stay readable on a phone. */
+  .install-sheet {
+    position: fixed;
+    top: var(--header-h);
+    left: 0.75rem;
+    right: 0.75rem;
+    width: auto;
+  }
+}
 </style>
